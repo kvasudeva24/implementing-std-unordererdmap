@@ -7,8 +7,10 @@ int main(){
 
     unordered_map<int, char> test;
     // test.insert(4, 'c');
-    test.insert(412, 'o');
-    test.insert(1, 'k');
+    // int x = 412;
+    // test.insert(x, 'o');
+    // test.insert(11, 'k');
+    // test.insert(22, 'i');
 
     auto array = test.data_;
     for(int i{}; i<10; i++){
