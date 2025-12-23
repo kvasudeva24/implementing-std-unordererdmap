@@ -36,13 +36,8 @@ public: //public for debugging, private actually
 
                 std::size_t hash_key = std::hash<K>{}(old->key);
                 hash_key %= new_cap;
-                Node* iter = newData[hash_key];
-                if(iter == nullptr){
-                    newData[hash_key] = old;
-                } else {
-                    old->next = newData[hash_key];
-                    newData[hash_key] = old;
-                } 
+                old->next = newData[hash_key];
+                newData[hash_key] = old;
             }
         }
         cap_ = new_cap;
