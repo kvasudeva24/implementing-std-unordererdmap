@@ -7,50 +7,23 @@ int main(){
 
 
     unordered_map<int, char> test;
-    auto array = test.data_;
+    // auto array = test.data_;
     test.insert(4, 'c'); 
-    // test.insert(4, 'w');
-    for(size_t i{}; i<test.cap_; i++){
-        auto* iter = array[i];
-        if(!iter){
-            std::cout << "no data on index " << i << std::endl; 
-        } else {
-            while(iter){
-                std::cout << "Index: " << i << " --- Key/Value: " << iter->key << "/" << iter->value << std::endl;
-                iter = iter->next;
-            }
-        }
-    }
-
-
-
+    test.insert(10, 'w');
     // for(size_t i{}; i<test.cap_; i++){
     //     auto* iter = array[i];
     //     if(!iter){
     //         std::cout << "no data on index " << i << std::endl; 
     //     } else {
     //         while(iter){
-    //             std::cout << "Index: " << i << " --- Key/Value: " << iter->key << "/" << iter->value << std::endl;
+    //             std::cout << "Index: " << i << "  Key/Value: " << iter->key << "/" << iter->value << "  ----  ";
     //             iter = iter->next;
     //         }
+    //         std::cout << std::endl;
     //     }
     // }
 
-    // test.insert(4, 'l');
-    // for(size_t i{}; i<test.cap_; i++){
-    //     auto* iter = array[i];
-    //     if(!iter){
-    //         std::cout << "no data on index " << i << std::endl; 
-    //     } else {
-    //         while(iter){
-    //             std::cout << "Index: " << i << " --- Key/Value: " << iter->key << "/" << iter->value << std::endl;
-    //             iter = iter->next;
-    //         }
-    //     }
-    // }
-
-    // std::cout << std::addressof(array) << std::endl;
-    // std::cout << test.cap_ << std::endl;
+    test.remove(4);
 
 
     // for(size_t i{}; i<test.cap_; i++){
@@ -59,9 +32,10 @@ int main(){
     //         std::cout << "no data on index " << i << std::endl; 
     //     } else {
     //         while(iter){
-    //             std::cout << "Index: " << i << " --- Key/Value: " << iter->key << "/" << iter->value << std::endl;
+    //             std::cout << "Index: " << i << "  Key/Value: " << iter->key << "/" << iter->value << "  ----  ";
     //             iter = iter->next;
     //         }
+    //         std::cout << std::endl;
     //     }
     // }
 

@@ -1,6 +1,8 @@
 #include <optional>
 #include <algorithm>
 #include <iostream>
+#include <stdexcept>
+
 
 
 
@@ -78,6 +80,59 @@ public:
         data_[hash_key] = newNode;       
         
         size_++;
+    }
+
+    //since all keys are unique in a map, we pass one key as the parameter
+    void remove(K key){
+        std::size_t  hash_key = std::hash<K>{}(key) % cap_;
+        Node* bucket = data_[hash_key];
+        Node* trail = nullptr;
+
+
+        while(bucket){
+            if(bucket->key == key){
+                //two cases:
+                //1. if bucket is the head of the list and trail is null we move it along
+                //2. if node is in middle we jump with trail and delete
+                if(trail == nullptr){
+                    trail = bucket;
+                    bucket = bucket->next;
+                    delete trail;
+                    data_[hash_key] = bucket;
+                    // std::cout << "entered properly case 1" << std::endl;
+                } else {
+                    trail->next = bucket->next;
+                    delete bucket;
+                    // std::cout << "entered properly case 2 " << std::endl;
+                }
+                size_--;
+                return;
+            }
+            trail = bucket;
+            bucket = bucket->next;
+        }
+        throw std::invalid_argument("Key is not in structure");
+    }
+
+
+    ~unordered_map(){
+        for(size_t i{}; i<cap_; i++){
+            Node* bucket = data_[i];
+            Node* trail = nullptr;
+
+            while(bucket){
+                trail = bucket;
+                bucket = bucket->next;
+                delete trail;
+                trail = nullptr;
+            }
+            data_[i] = nullptr;
+        }
+        delete[] data_;
+        data_ = nullptr;
+        size_ = 0;
+        cap_ = 0;
+        std::cout << "Deleted!" << std::endl;
     }
 
 
